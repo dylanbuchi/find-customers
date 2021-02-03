@@ -2,7 +2,7 @@ import csv
 
 from django.core.management import BaseCommand
 
-from app.customers.models import Customer
+from app.customers.models import Customer, CustomerLocation
 
 
 class Command(BaseCommand):
@@ -35,3 +35,9 @@ class Command(BaseCommand):
                          company=row['company'],
                          city=row['city'],
                          title=row['title']).save()
+        self.set_customers_location_coordinates()
+
+    def set_customers_location_coordinates(self):
+        """After creating the database we set the latitude and longitude fields"""
+        customer_location = CustomerLocation()
+        customer_location.set_customers_locations()
