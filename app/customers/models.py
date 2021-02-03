@@ -1,4 +1,8 @@
+import os
+
 from django.db import models
+
+from mapbox import Geocoder
 
 # Create your models here.
 
@@ -66,3 +70,29 @@ class Customer(models.Model):
         Title: {self.title}, \
         Latitude: {self.latitude}, \
         Longitude: {self.longitude}"
+
+
+class CustomerLocation():
+    """Customer Location model to get the customers longitude and latitude coordinates from the Map Box API"""
+
+    customers = Customer.objects.all()
+    # loads the secret TOKEN API from the .env file, to get access to the API
+    geocoder = Geocoder(access_token=os.environ['MAP_BOX_TOKEN'])
+
+    def set_customers_locations(self):
+        """Set the customer latitude and longitude by his city name"""
+        if not self.customers:
+            raise ValueError("There is no customer!")
+
+        for customer in self.customers:
+            city = customer.get_city()
+            if city:
+                response = self.geocoder.forward(city)
+                collection = response.json()
+                coordinates = collection['features'][0]['geometry'][
+                    'coordinates']
+
+                longitude, latitude = coordinates
+                customer.longitude = longitude
+                customer.latitude = latitude
+                customer.save()
