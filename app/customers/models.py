@@ -17,14 +17,14 @@ class Customer(models.Model):
     city = models.CharField(max_length=255)
     title = models.CharField(max_length=255)
 
-    longitude = models.DecimalField(max_digits=22,
-                                    decimal_places=16,
-                                    blank=True,
-                                    null=True)
     latitude = models.DecimalField(max_digits=22,
                                    decimal_places=16,
                                    blank=True,
                                    null=True)
+    longitude = models.DecimalField(max_digits=22,
+                                    decimal_places=16,
+                                    blank=True,
+                                    null=True)
 
     # getters methods
     def get_first_name(self):
@@ -48,11 +48,11 @@ class Customer(models.Model):
     def get_title(self):
         return self.title
 
-    def get_longitude(self):
-        return self.longitude
-
     def get_latitude(self):
         return self.latitude
+
+    def get_longitude(self):
+        return self.longitude
 
     # magic methods
     def __repr__(self) -> str:
