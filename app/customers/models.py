@@ -14,7 +14,7 @@ class Customer(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255)
 
-    email = models.EmailField(max_length=255)
+    email = models.EmailField(max_length=255, unique=True)
     gender = models.CharField(max_length=255)
 
     company = models.CharField(max_length=255)
@@ -72,7 +72,7 @@ class Customer(models.Model):
         Longitude: {self.longitude}"
 
 
-class CustomerLocation():
+class CustomerLocationHandler():
     """Customer Location model to get the customers longitude and latitude coordinates from the Map Box API"""
 
     customers = Customer.objects.all()
@@ -81,18 +81,32 @@ class CustomerLocation():
 
     def set_customers_locations(self):
         """Set the customer latitude and longitude by his city name"""
+
         if not self.customers:
             raise ValueError("There is no customer!")
 
         for customer in self.customers:
-            city = customer.get_city()
-            if city:
-                response = self.geocoder.forward(city)
-                collection = response.json()
-                coordinates = collection['features'][0]['geometry'][
-                    'coordinates']
+            longitude = latitude = 0
 
+            coordinates = self.get_customer_location(customer)
+
+            if coordinates:
                 longitude, latitude = coordinates
-                customer.longitude = longitude
-                customer.latitude = latitude
-                customer.save()
+
+            customer.longitude = longitude
+            customer.latitude = latitude
+            customer.save()
+
+    def get_customer_location(self, customer: Customer) -> tuple:
+        """Returns the customer's city location longitude and latitude coordinates"""
+
+        city = customer.get_city()
+        coordinates = None
+
+        if city:
+            response = self.geocoder.forward(city)
+            collection = response.json()
+
+            # The format from the API is (longitude, latitude)
+            coordinates = collection['features'][0]['geometry']['coordinates']
+        return coordinates
