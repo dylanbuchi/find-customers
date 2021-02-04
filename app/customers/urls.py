@@ -3,6 +3,10 @@ from rest_framework import routers
 from app.customers.views import CustomerView
 
 router = routers.DefaultRouter()
-router.register('', CustomerView, basename='customer')
+customer_list = CustomerView.as_view({'get': 'list'})
 
-urlpatterns = [path('', include(router.urls))]
+router.register(r'', CustomerView, basename='customer')
+urlpatterns = [
+    path('', include(router.urls)),
+    path('', customer_list, name='api')
+]
