@@ -86,19 +86,10 @@ class CustomerLocationHandler():
             raise ValueError("There is no customer!")
 
         for customer in self.customers:
-            longitude = latitude = 0
+            self.update_customer_location(customer)
 
-            coordinates = self.get_customer_location(customer)
-
-            if coordinates:
-                longitude, latitude = coordinates
-
-            customer.longitude = longitude
-            customer.latitude = latitude
-            customer.save()
-
-    def get_customer_location(self, customer: Customer) -> tuple:
-        """Returns the customer's city location longitude and latitude coordinates"""
+    def get_customer_location_from_API(self, customer: Customer) -> tuple:
+        """Return the customer's city location longitude and latitude coordinates from the Map Box API"""
 
         city = customer.get_city()
         coordinates = None
@@ -110,3 +101,16 @@ class CustomerLocationHandler():
             # The format from the API is (longitude, latitude)
             coordinates = collection['features'][0]['geometry']['coordinates']
         return coordinates
+
+    def update_customer_location(self, customer: Customer):
+        """Update a customer's location based on his city"""
+
+        longitude = latitude = 0
+        coordinates = self.get_customer_location_from_API(customer)
+
+        if coordinates:
+            longitude, latitude = coordinates
+
+        customer.longitude = longitude
+        customer.latitude = latitude
+        customer.save()
