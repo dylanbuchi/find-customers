@@ -1,0 +1,32 @@
+.index-bg {
+  background-image: url('/static/images/bg.jpg');
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+
+  background-attachment: fixed;
+}
+
+.customers-bg {
+  background-image: url('/static/images/bg-2.jpg');
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: top center;
+
+  background-attachment: fixed;
+}
+
+.customers-font-size {
+  font-size: 20px;
+}
+.customers-list-title {
+  padding-left: 45px;
+}
+footer {
+  padding-top: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
