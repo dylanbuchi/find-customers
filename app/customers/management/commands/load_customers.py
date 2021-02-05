@@ -8,6 +8,7 @@ from app.customers.models import Customer, CustomerLocationHandler
 
 class Command(BaseCommand):
     help = "Load the customers CSV file and upload it to the database use --path option to type the file path"
+    customer_location_handler = CustomerLocationHandler()
 
     def add_arguments(self, parser):
         # add the --path option for the command to set the csv file path on the command line
@@ -48,8 +49,13 @@ class Command(BaseCommand):
         # this means it's the first file load, so we only do it once!
         if first_customer.latitude is None:
             self.set_customers_location_coordinates()
+            self.get_customers_images_locations()
 
     def set_customers_location_coordinates(self):
         """After creating the database we set the latitude and longitude fields"""
-        customer_location = CustomerLocationHandler()
-        customer_location.set_customers_locations()
+
+        self.customer_location_handler.set_customers_locations()
+
+    def get_customers_images_locations(self):
+        """After getting the customers's latitude and longitude we get the customers location images and store it in the static folder"""
+        self.customer_location_handler.get_customers_images_locations()
