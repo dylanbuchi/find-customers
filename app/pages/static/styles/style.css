@@ -1,5 +1,5 @@
 .index-bg {
-  background-image: url('/static/images/bg.jpg');
+  background-image: url('/static/background-images/bg.jpg');
   -webkit-background-size: cover;
   background-size: cover;
   background-repeat: no-repeat;
@@ -9,7 +9,7 @@
 }
 
 .customers-bg {
-  background-image: url('/static/images/bg-2.jpg');
+  background-image: url('/static/background-images/bg-2.jpg');
   -webkit-background-size: cover;
   background-size: cover;
   background-repeat: no-repeat;
