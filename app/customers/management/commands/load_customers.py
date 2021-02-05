@@ -42,6 +42,8 @@ class Command(BaseCommand):
         except IntegrityError:
             return (
                 "Customers can't have the same email, please check your data!")
+        except FileNotFoundError:
+            return "The path to the file is incorrect or does not exist!\nLine 46: load_customers.py"
 
         first_customer = Customer.objects.get(id=1)
 
