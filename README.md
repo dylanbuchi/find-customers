@@ -9,7 +9,8 @@
 This project uses the MapBoxAPI, to get the customers's city latitude and longitude:
 - https://docs.mapbox.com/api/overview/ 
 
-The project already has the database so there is no need to create an API key, so you can skip step **5** and **6**
+The project has already everything set up so there is no need to create an API key, you can skip step **5** and **6**
+
 ## Running the Project Locally
 
 **1**. Clone the repository to your local machine:
