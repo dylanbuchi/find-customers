@@ -22,11 +22,11 @@ class Customer(models.Model):
     title = models.CharField(max_length=255)
 
     latitude = models.DecimalField(max_digits=22,
-                                   decimal_places=16,
+                                   decimal_places=4,
                                    blank=True,
                                    null=True)
     longitude = models.DecimalField(max_digits=22,
-                                    decimal_places=16,
+                                    decimal_places=4,
                                     blank=True,
                                     null=True)
 
