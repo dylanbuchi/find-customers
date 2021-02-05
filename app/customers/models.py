@@ -1,5 +1,3 @@
-import os
-
 from django.db import models
 
 from mapbox import Geocoder
@@ -74,10 +72,12 @@ class Customer(models.Model):
 
 class CustomerLocationHandler():
     """Customer Location model to get the customers longitude and latitude coordinates from the Map Box API"""
+    # IF API KEY: Load the secret TOKEN API from the .env file, to get access to the API
+    # secret = os.environ['MAP_BOX_TOKEN']
+    # geocoder = Geocoder(secret)
 
+    geocoder = Geocoder()
     customers = Customer.objects.all()
-    # loads the secret TOKEN API from the .env file, to get access to the API
-    geocoder = Geocoder(access_token=os.environ['MAP_BOX_TOKEN'])
 
     def set_customers_locations(self):
         """Set the customer latitude and longitude by his city name"""
