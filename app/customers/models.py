@@ -1,6 +1,7 @@
+import os
 from django.db import models
 
-from mapbox import Geocoder
+from mapbox import Geocoder, Static
 
 # Create your models here.
 
@@ -75,6 +76,8 @@ class CustomerLocationHandler():
     # IF API KEY: Load the secret TOKEN API from the .env file, to get access to the API
     # secret = os.environ['MAP_BOX_TOKEN']
     # geocoder = Geocoder(secret)
+    # TOKEN = secret
+    # geocoder = Geocoder(access_token=TOKEN)
 
     geocoder = Geocoder()
     customers = Customer.objects.all()
@@ -114,3 +117,37 @@ class CustomerLocationHandler():
         customer.longitude = longitude
         customer.latitude = latitude
         customer.save()
+
+    def get_customers_images_locations(self):
+        """Get every image location from the MapBox API based on his city longitude and latitude coordinates"""
+        # add api token key here to get all the images
+        # service = Static(self.TOKEN)
+        service = Static()
+
+        for customer in self.customers:
+            city = {
+                'type': 'Feature',
+                'properties': {
+                    'name': customer.get_city()
+                },
+                'geometry': {
+                    'type':
+                    'Point',
+                    'coordinates':
+                    [customer.get_longitude(),
+                     customer.get_latitude()]
+                }
+            }
+            response = service.image('mapbox.satellite', features=[city])
+            image_path = rf"C:\Users\crypt\Desktop\customers-rest-api\customers-rest-api\app\pages\static\images\{customer.id}.png"
+            self.save_customer_image_location(image_path, response)
+
+    def save_customer_image_location(self, filepath, response):
+        """Save the customer's image location with to a directory and the names of the files are the customers id in a pdf format"""
+
+        if not os.path.isfile(filepath):
+            with open(filepath, 'w') as output:
+                output.write('something')
+
+            with open(filepath, 'wb') as output:
+                output.write(response.content)
