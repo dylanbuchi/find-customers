@@ -33,6 +33,8 @@ def display_customer_by_id_page(request):
                         'company': customer_data.company,
                         'city': customer_data.city,
                         'title': customer_data.title,
+                        'latitude': customer_data.latitude,
+                        'longitude': customer_data.longitude,
                     })
 
         except AssertionError:
