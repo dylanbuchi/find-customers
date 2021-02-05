@@ -151,4 +151,4 @@ class CustomerLocationHandler():
                 output.write('something')
 
         with open(filepath, 'wb') as output:
-             output.write(response.content)
+            output.write(response.content)
