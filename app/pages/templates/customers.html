@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}" />
+    <title>Document</title>
+  </head>
+  <body class="customers-bg">
+    <h1 class="customers-list-title">List of Customers:</h1>
+    <ul class="customers-font-size">
+      ----------------------------------------------------------------------------------------
+      <br />
+      {% for customer in data %}
+      <p><b># {{ customer.id }}</b></p>
+
+      <br />
+      <li><b>First name: </b> {{ customer.first_name }}</li>
+      <br />
+      <li><b>Last name: </b> {{ customer.last_name }}</li>
+      <br />
+      <li><b>Email: </b> {{ customer.email }}</li>
+      <br />
+      <li><b>Gender: </b> {{ customer.gender }}</li>
+      <br />
+      <li><b>Company: </b> {{ customer.company }}</li>
+      <br />
+      <li><b>City: </b>{{ customer.city }}</li>
+      <br />
+      <li><b>Title: </b> {{ customer.title }}</li>
+      <br />
+      <br />
+      ----------------------------------------------------------------------------------------
+      {% endfor %}
+    </ul>
+  </body>
+  <footer class="footer">Dylan Buchi © 2021</footer>
+</html>
