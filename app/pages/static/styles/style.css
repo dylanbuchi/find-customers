@@ -24,6 +24,10 @@
 .customers-list-title {
   padding-left: 45px;
 }
+img {
+  width: 600px;
+  height: 400px;
+}
 footer {
   padding-top: 150px;
   display: flex;

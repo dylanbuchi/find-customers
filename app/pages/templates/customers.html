@@ -37,7 +37,11 @@
       <li><b>Longitude: </b> {{ customer.longitude}}</li>
       <br />
       <br />
-      ----------------------------------------------------------------------------------------
+      <img
+        src="{% static 'images/'%}{{ customer.id }}.png"
+        alt="image location"
+      />
+
       {% endfor %}
     </ul>
   </body>
