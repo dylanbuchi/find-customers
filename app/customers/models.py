@@ -5,6 +5,12 @@ from mapbox import Geocoder, Static
 
 # Create your models here.
 
+# GLOBAL VARIABLES
+IMAGE_PATH_LOCATION = os.path.abspath(
+    os.path.join(os.getcwd(), 'app/pages/static/images'))
+
+# YOUR_API_KEY = None
+
 
 class Customer(models.Model):
     """Database model for the customers"""
@@ -73,13 +79,13 @@ class Customer(models.Model):
 
 class CustomerLocationHandler():
     """Customer Location model to get the customers longitude and latitude coordinates from the Map Box API"""
-    # IF API KEY: Load the secret TOKEN API from the .env file, to get access to the API
-    # secret = os.environ['MAP_BOX_TOKEN']
-    # geocoder = Geocoder(secret)
-    # TOKEN = secret
-    # geocoder = Geocoder(access_token=TOKEN)
 
+    # uncomment next line: add api key to get the latitude and longitude for the customers
+    # geocoder = Geocoder(access_token=YOUR_API_KEY)
+
+    # # comment this line if using api key
     geocoder = Geocoder()
+
     customers = Customer.objects.all()
 
     def set_customers_locations(self):
@@ -120,8 +126,11 @@ class CustomerLocationHandler():
 
     def get_customers_images_locations(self):
         """Get every image location from the MapBox API based on his city longitude and latitude coordinates"""
-        # add api token key here to get all the images
-        # service = Static(self.TOKEN)
+
+        # uncomment next line: add api key to get the images location for the customers
+        # service = Static(access_token=YOUR_API_KEY)
+
+        # # comment this line if using api key
         service = Static()
 
         for customer in self.customers:
@@ -139,7 +148,8 @@ class CustomerLocationHandler():
                 }
             }
             response = service.image('mapbox.satellite', features=[city])
-            image_path = rf"C:\Users\crypt\Desktop\customers-rest-api\customers-rest-api\app\pages\static\images\{customer.id}.png"
+
+            image_path = f"{IMAGE_PATH_LOCATION}/{customer.id}.png"
             self.save_customer_image_location(image_path, response)
 
     def save_customer_image_location(self, filepath, response):
