@@ -143,11 +143,12 @@ class CustomerLocationHandler():
             self.save_customer_image_location(image_path, response)
 
     def save_customer_image_location(self, filepath, response):
-        """Save the customer's image location with to a directory and the names of the files are the customers id in a pdf format"""
+        """Save the customer's image location to the static folder, files format name are: {customer_id}.png"""
 
         if not os.path.isfile(filepath):
+            # create and write something to the file for it to exist before saving the image on it
             with open(filepath, 'w') as output:
                 output.write('something')
 
-            with open(filepath, 'wb') as output:
-                output.write(response.content)
+        with open(filepath, 'wb') as output:
+             output.write(response.content)
