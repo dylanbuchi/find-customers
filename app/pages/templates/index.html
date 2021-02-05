@@ -23,13 +23,13 @@
         </h1>
 
         <h2>Options:</h2>
-        <li><a href="{% url 'api' %}">Customers API page</a></li>
+        <li><a href="{% url 'api' %}">Customers REST API page</a></li>
         <br />
-        <li><a href="{% url 'customers' %}">List every customers</a></li>
+        <li><a href="{% url 'customers' %}">List of every customers</a></li>
       </ul>
     </div>
     <div style="padding-left: 20px; padding-top: 20px">
-      <h4>Get a customer info by id:</h4>
+      <h4>Get a customer by id:</h4>
       <form action="{% url 'customers_by_id' %}" method="POST">
         {% csrf_token %}
 
