@@ -22,7 +22,9 @@ def display_customer_by_id_page(request):
             assert str(id_to_search).isdigit() and id_to_search
 
             customer_data = Customer.objects.get(id=id_to_search)
+
             if customer_data:
+
                 return render(
                     request, 'customers_by_id.html', {
                         'id': customer_data.id,
@@ -35,6 +37,7 @@ def display_customer_by_id_page(request):
                         'title': customer_data.title,
                         'latitude': customer_data.latitude,
                         'longitude': customer_data.longitude,
+                        'image': f'images/{customer_data.id}.png'
                     })
 
         except AssertionError:
