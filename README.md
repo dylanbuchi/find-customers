@@ -1,7 +1,7 @@
 # Customers REST API
 ### An API to list customers and get them by id
 
-# Demo:
+## Demo:
 <img src=https://user-images.githubusercontent.com/52018183/107093675-68991780-67e4-11eb-98da-2070789f67e3.gif with=400 height=400/>
 
 -------
