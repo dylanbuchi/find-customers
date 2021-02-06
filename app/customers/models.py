@@ -1,7 +1,9 @@
 import os
+import requests
+
 from django.db import models
 
-from mapbox import Geocoder, Static
+from mapbox import Geocoder
 
 # Create your models here.
 
@@ -9,7 +11,7 @@ from mapbox import Geocoder, Static
 IMAGE_PATH_LOCATION = os.path.abspath(
     os.path.join(os.getcwd(), 'app/pages/static/images'))
 
-# YOUR_API_KEY = None
+YOUR_API_KEY = ""
 
 
 class Customer(models.Model):
@@ -80,12 +82,7 @@ class Customer(models.Model):
 class CustomerLocationHandler():
     """Customer Location model to get the customers longitude and latitude coordinates from the Map Box API"""
 
-    # uncomment next line: add api key to get the latitude and longitude for the customers
-    # geocoder = Geocoder(access_token=YOUR_API_KEY)
-
-    # # comment this line if using api key
-    geocoder = Geocoder()
-
+    geocoder = Geocoder(access_token=YOUR_API_KEY)
     customers = Customer.objects.all()
 
     def set_customers_locations(self):
@@ -127,29 +124,16 @@ class CustomerLocationHandler():
     def get_customers_images_locations(self):
         """Get every image location from the MapBox API based on his city longitude and latitude coordinates"""
 
-        # uncomment next line: add api key to get the images location for the customers
-        # service = Static(access_token=YOUR_API_KEY)
-
-        # # comment this line if using api key
-        service = Static()
-
         for customer in self.customers:
-            city = {
-                'type': 'Feature',
-                'properties': {
-                    'name': customer.get_city()
-                },
-                'geometry': {
-                    'type':
-                    'Point',
-                    'coordinates':
-                    [customer.get_longitude(),
-                     customer.get_latitude()]
-                }
-            }
-            response = service.image('mapbox.satellite', features=[city])
+            zoom = 10
+            long, lat = customer.get_longitude(), customer.get_latitude()
+            url = f"https://api.mapbox.com/styles/v1/mapbox/light-v10/static/pin-s-l+000\
+({long},{lat},{zoom})/{long},{lat},{zoom}/500x300?access_token={YOUR_API_KEY}"
 
-            image_path = f"{IMAGE_PATH_LOCATION}/{customer.id}.png"
+            response = requests.get(url)
+            response.raise_for_status()
+
+            image_path = f"{IMAGE_PATH_LOCATION}/{customer.get_city()}-{customer.id}.png"
             self.save_customer_image_location(image_path, response)
 
     def save_customer_image_location(self, filepath, response):
