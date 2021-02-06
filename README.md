@@ -1,6 +1,6 @@
 # Customers REST API
 ### An API to list customers and get them by id
-
+---
 ## Demo:
 <img src=https://user-images.githubusercontent.com/52018183/107127881-ef5afc80-6897-11eb-8ff6-0bc4377c2bd5.gif with=400 height=400/>
 
@@ -56,6 +56,7 @@ python manage.py runserver
 
 The project will be available at http://127.0.0.1:8000/
 
+---
 ```bash
 You can access a customer by id with the user interface on the home page or like this: http://127.0.0.1:8000/api/v1/customers/{id_number}/
 ```
