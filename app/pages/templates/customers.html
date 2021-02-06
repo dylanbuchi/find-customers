@@ -38,11 +38,13 @@
       <br />
       <br />
       <img
-        src="{% static 'images/'%}{{ customer.id }}.png"
+        src="{% static 'images/'%}{{customer.city}}-{{customer.id}}.png"
         alt="image location"
       />
-
-      {% endfor %}
+      <p>
+        ------------------------------------------------------------------------------------------
+      </p>
+      {%endfor %}
     </ul>
   </body>
   <footer class="footer">Dylan Buchi © 2021</footer>
