@@ -1,12 +1,12 @@
 # Customers REST API
-### An API to list customers and get them by id
+### An API to list every customers and to get them by id
 ---
 ## Demo:
 <img src=https://user-images.githubusercontent.com/52018183/107127881-ef5afc80-6897-11eb-8ff6-0bc4377c2bd5.gif with=400 height=400/>
 
 -------
 
-This project uses the MapBox API, to get the customers's city latitude and longitude and the map images:
+This project uses the MapBox API, to get the customers's city latitude and longitude and the map images
 - https://docs.mapbox.com/api/overview/ 
 
 The project has already everything set up so there is no need to create an API key, you can skip step **5** and **6**
