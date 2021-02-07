@@ -58,5 +58,5 @@ The project will be available at http://127.0.0.1:8000/
 
 ---
 ```bash
-You can access a customer by id with the user interface on the home page or like this: http://127.0.0.1:8000/api/v1/customers/{id_number}/
+You can access a customer by id with the user interface at the home page or like this: http://127.0.0.1:8000/api/v1/customers/{id_number}/
 ```
