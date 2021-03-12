@@ -1,5 +1,5 @@
 # Customers REST API
-### An API to list every customers and to get them by id
+### An API to list every customers and to get them by id, built with Python/Django
 ---
 ## Demo:
 <img src=https://user-images.githubusercontent.com/52018183/107127881-ef5afc80-6897-11eb-8ff6-0bc4377c2bd5.gif with=400 height=400/>
