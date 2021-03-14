@@ -26,3 +26,5 @@ sqlparse==0.4.1
 uritemplate==3.0.1
 urllib3==1.26.3
 yapf==0.30.0
+gunicorn==20.0.4
+whitenoise==5.2.0
