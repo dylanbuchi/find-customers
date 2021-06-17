@@ -49,9 +49,14 @@ python manage.py migrate
 python manage.py load_customers --path ./data/customers.csv
 ``` 
 
+**7**. Add a Django secret key to your current environment. You can generate one from this website:
+ - https://djecrety.ir/
 
+```bash
+export DJANGO_KEY='Your_secret_key'
+```
 
-**7**. Run the development server:
+**8**. Run the development server:
 
 ```bash
 python manage.py runserver
