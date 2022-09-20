@@ -1,8 +1,8 @@
-# Customers REST API
+# Find Customers
 ### An API to list every customer and to get them by id, built with Python/Django
 
 ## Live:
-https://customers-rest-api.herokuapp.com/
+https://find-customers.herokuapp.com/
 ---
 ## Demo:
 <img src=https://user-images.githubusercontent.com/52018183/107127881-ef5afc80-6897-11eb-8ff6-0bc4377c2bd5.gif with=400 height=400/>
@@ -17,14 +17,13 @@ The project has already everything set up so there is no need to create an API k
 ## Running the Project Locally
 
 **1**. Clone the repository to your local machine:
-
 ```bash
-git clone https://github.com/dylanbuchi/customers-rest-api.git
+git clone https://github.com/dylanbuchi/find-customers.git
 ```
 **2**. Go to the root directory of the project:
 
 ```bash
-cd customers-rest-api/
+cd find-customers/
 ```
 **3**. Create a python virtual environment and activate it:
 
