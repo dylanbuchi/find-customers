@@ -1,8 +1,7 @@
 # Find Customers
 
 A full-stack project to store and display user data and it's location on a map, with a REST API endpoint that allows users to be listed or retrieved by id. Built with Python, Django, Sqlite, CSS, HTML, and MapBox API.
-## Live:
-https://find-customers.up.railway.app/
+
 ---
 ## Demo:
 <img src=https://user-images.githubusercontent.com/52018183/107127881-ef5afc80-6897-11eb-8ff6-0bc4377c2bd5.gif with=400 height=400/>
